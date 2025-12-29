@@ -7,11 +7,7 @@ SynthDef(\fdnWindExtended, {
 	    density = 0.7,
 	    attackTime = 0.01, releaseTime = 0.3,
 	    delayScale = 1.0,
-	    combMix = 0.5, combDecay = 0.3, combFreq = 110;
-
-	arg delayRatios = #[1, 1.98, 3.03, 3.95, 5.02, 5.97, 7.04, 7.98];
-	arg delayBase = 0.006;
-	arg combRatios = #[1, 3, 5, 7];
+	    combMix = 0.5, combDecay = 0.3, combFreq = 110, delayRatios = #[1, 1.98, 3.03, 3.95, 5.02, 5.97, 7.04, 7.98], delayBase = 0.006, combRatios = #[1, 3, 5, 7];
 
 	var sig, dry, wet, delays, combed;
 	var delayTimes, mods, combTimes;
@@ -35,7 +31,7 @@ SynthDef(\fdnWindExtended, {
 	delays = LocalIn.ar(numDelays);
 
 	internalAmp = Amplitude.kr(delays.sum, 0.05, 0.2);
-	feedbackAmount = feedbackAmount * (1 - (internalAmp * 0.8)).clip(0.6, 1);
+	feedbackAmount = feedbackAmount * (1 - (internalAmp * 0.7)).clip(0.6, 1);
 
 	delays = delays + (dry * ([0.7, 0.5, 0.3, 0.2, 0.15, 0.1, 0.08, 0.05] * density));
 
