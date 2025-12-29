@@ -67,7 +67,7 @@ SynthDef(\fdnWindExtended, {
 
 	wet = Splay.ar(delays, spread: 0.8, center: 0.0);
 	wet = wet + (Splay.ar(combed, spread: 0.6) * combMix);
-	wet = wet + (PinkNoise.ar(0.006) * amp);
+	// wet = wet + (PinkNoise.ar(0.006) * amp);
 
 	sig = XFade2.ar(dry.dup, wet, mix * 2 - 1);
 
