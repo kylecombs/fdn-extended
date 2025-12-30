@@ -25,13 +25,13 @@ SynthDef(\fdnWindExtended, {
 
 	amp = Amplitude.kr(dry, attackTime, releaseTime);
 
-	feedbackAmount = feedbackBase + (feedbackMod * amp * 3).clip(0, 0.45);
+	feedbackAmount = feedbackBase + (feedbackMod * amp * 2).clip(0, 0.35);
 	brightness = brightnessBase + (brightnessMod * amp);
 
 	delays = LocalIn.ar(numDelays);
 
 	internalAmp = Amplitude.kr(delays.sum, 0.05, 0.2);
-	feedbackAmount = feedbackAmount * (1 - (internalAmp * 0.7)).clip(0.6, 1);
+	feedbackAmount = feedbackAmount * (1 - (internalAmp * 0.7)).clip(0.5, 1);
 
 	delays = delays + (dry * ([0.7, 0.5, 0.3, 0.2, 0.15, 0.1, 0.08, 0.05] * density));
 
@@ -45,15 +45,15 @@ SynthDef(\fdnWindExtended, {
 	};
 
 	delays = delays.collect { |tap, i|
-		var baseFreq = 250 + (i * 180);
+		var baseFreq = 250 + (i * 150);
 		var freq = baseFreq + (baseFreq * 1.2 * brightness);
 		var rq = 0.7 - (brightness * 0.2);
-		BLowPass.ar(tap, freq.clip(150, 7000), rq.clip(0.2, 1))
+		BLowPass.ar(tap, freq.clip(150, 2000), rq.clip(0.2, 1))
 	};
 
 	delays = delays.collect { |tap|
-		var drive = 1.05 + (amp * 0.7);
-		(tap * drive).tanh * 0.6
+		var drive = 1.05 + (amp * 0.6);
+		(tap * drive).tanh * 0.65
 	};
 
 	combed = combTimes.collect { |time, i|

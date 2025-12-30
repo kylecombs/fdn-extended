@@ -18,7 +18,7 @@
 	// acoustic models
 	aeolian:        (ratios: [1, 1.08, 1.17, 2.33, 2.5, 2.58, 4.58, 4.83], base: 0.012),
 	shellConch:     (ratios: [1, 2, 3, 5, 8, 13, 21, 34] / 5, base: 0.009),
-	subtone:        (ratios: [1, 1.01, 1.02, 3, 5, 7, 9, 11], base: 0.02),
+	subtone:        (ratios: [1, 1.01, 1.02 , 3, 5, 7, 9, 11], base: 0.02),
 	jetWhistle:     (ratios: [1, 1.15, 1.35, 1.55, 1.85, 2.15, 2.55, 3], base: 0.002),
 	differenceTone: (ratios: [5, 6, 7, 8, 9, 10, 11, 12], base: 0.003),
 

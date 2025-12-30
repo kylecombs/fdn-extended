@@ -37,9 +37,9 @@ var c = ~combPresets[\throatSing];
 // use it
 ~setPreset.(~fdn, \multiphonic, \detuned, 82.4);
 ~setPreset.(~fdn, \bisbigliando, \slightBeat, 110);
-~setPreset.(~fdn, \aeolian, \metallic, 55);
+~setPreset.(~fdn, \aeolian, \metallic, 110);
 ~setPreset.(~fdn, \aeolian, \slightBeat, 55);
-~setPreset.(~fdn, \overblown, \slightBeat, 55);
+~setPreset.(~fdn, \overblown, \slightBeat, 110);
 ~setPreset.(~fdn, \spectralFinger, \detuned, 55);
 
 // usage - assuming you have a drone on bus 10
@@ -62,14 +62,14 @@ SynthDef(\droneSource, {|out = 10|
 
 (
 SynthDef(\droneSource, {|out = 10|
-	var buf = Buffer.read(s, "/Users/kylecombs/Desktop/Sax Morph/Alto_sax_multiphonic_F#1_resynth.wav");
-	Out.ar(out, PlayBuf.ar(2, buf, BufRateScale.kr(buf) * 2));
+	var buf = Buffer.read(s, "/Users/kylecombs/Desktop/Sax Morph/nupg_for_sax_morph.wav");
+	Out.ar(out, PlayBuf.ar(2, buf, BufRateScale.kr(buf)));
 }).add;
 )
 
 (
 SynthDef(\droneSource, {|out = 10|
-	var snd = SinOscFB.ar(110, 0.5, SinOsc.kr(0.05));
+	var snd = SinOscFB.ar(220, 0.5, SinOsc.kr(0.05));
 	Out.ar(out, snd * 0.05);
 }).add;
 )
@@ -79,9 +79,9 @@ SynthDef(\droneSource, {|out = 10|
 
 ~fdn = Synth(\fdnWindExtended, [\in, 10, \feedbackBase, 0.3, \feedbackMod, 0.6, \brightnessBase, 0.7, \brightnessMod, 0.7, \modRate, 0.03, \mix, 0.5], addAction: \addToTail);
 
-~fdn.set(\feedbackMod, 0.5);
-~fdn.set(\feedbackBase, 0.4);
+~fdn.set(\feedbackMod, 0.3);
+~fdn.set(\feedbackBase, 0.7);
 ~fdn.set(\delayScale, 0.5);
-~fdn.set(\mix, 0.6);
-~fdn.set(\combMix, 0.3);
-~fdn.set(\combDecay, 0.3);
+~fdn.set(\mix, 0.5);
+~fdn.set(\combMix, 0.9);
+~fdn.set(\combDecay, 0.8);
